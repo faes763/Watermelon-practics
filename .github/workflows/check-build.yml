@@ -23,32 +23,14 @@ jobs:
       - name: Build
         run: bun run build
         
-      # - name: Upload build artifacts
-      #   uses: actions/upload-artifact@v4
-      #   with:
-      #     name: build
-      #     path: ./
   deploy:
     needs: [build]
     runs-on: ubuntu-latest
 
     steps:
-      # - uses: actions/download-artifact@v4
-
-      # - name: Display structure of downloaded files
-      #   run: ls -R
-
       - name: Checkout
         uses: actions/checkout@v3
 
-      # - name: Deploy to server
-      #   env:
-      #     SERVER_HOST: ${{ secrets.SERVER_HOST }}
-      #     SERVER_USER: ${{ secrets.SERVER_USER }}
-      #     SERVER_PASSWORD: ${{ secrets.SERVER_PASSWORD }}
-      #   run: |
-      #     scp -r ./build $SERVER_USER@$SERVER_HOST:/app/frontend/CTemplace-next
-      #     ssh $SERVER_USER@$SERVER_HOST 'bash -s' < ./app/scripts/deploy.sh
 
       - name: Deploy to server
         uses: appleboy/ssh-action@master
@@ -57,5 +39,4 @@ jobs:
           username: root
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            whoami  
             bash -s < ./app/scripts/deploy.sh
