@@ -40,3 +40,6 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             bash -s < ./app/scripts/deploy.sh
+            cd ~/app/frontend/CTemplace-next
+            bun run build
+            pm2 start bun --name frontend -- start
