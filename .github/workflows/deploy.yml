@@ -1,4 +1,5 @@
 name: Deploy project
+
 on:
   workflow_run:
     workflows: ["Build Application"]
