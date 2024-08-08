@@ -41,6 +41,6 @@ jobs:
           script: |
             bash -s < ./app/scripts/deploy.sh
             cd ~/app/frontend/CTemplace-next
-            bun install
-            bun run build
+            npm ci
+            npm run build
             pm2 start bun --name frontend -- start
