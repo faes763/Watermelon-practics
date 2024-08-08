@@ -43,4 +43,5 @@ jobs:
             cd ~/app/frontend/CTemplace-next
             bun i
             pnpm run build
+            pm2 delete frontend
             pm2 start bun --name frontend -- start
