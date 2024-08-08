@@ -42,6 +42,6 @@ jobs:
             bash -s < ./app/scripts/deploy.sh
             cd ~/app/frontend/CTemplace-next
             bun i
-            pnpm run build
+            bun run build
             pm2 delete frontend
             pm2 start bun --name frontend -- start
