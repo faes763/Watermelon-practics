@@ -1,0 +1,5 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+export PATH=$PATH:/opt/homebrew/bin # или укажите правильный путь к npm
+bun run lint
