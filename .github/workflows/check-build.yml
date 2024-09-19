@@ -1,4 +1,4 @@
-name: Build project
+name: Build and Deploy Project
 
 on:
   push:
@@ -10,38 +10,36 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Set up Bun
+      - name: Set up Bun environment
         uses: oven-sh/setup-bun@v2
         with:
           bun-version: 'latest'
 
-      - name: Install modules
-        run: bun i
-      - name: Build
+      - name: Install dependencies
+        run: bun install
+
+      - name: Build project
         run: bun run build
         
   deploy:
     needs: [build]
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-
-      - name: Deploy to server
+      - name: Deploy to server via SSH
         uses: appleboy/ssh-action@master
         with:
-          host: 82.97.248.196
-          username: root
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            bash -s < ./app/scripts/deploy.sh
             cd ~/app/frontend/CTemplace-next
-            bun i
+            bun install
             bun run build
-            pm2 delete frontend
+            pm2 delete frontend || true
             pm2 start bun --name frontend -- start
