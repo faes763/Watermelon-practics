@@ -18,7 +18,6 @@ export function Header() {
     return(
         <header className=" w-full md:pr-24 md:h-24 h-16 gap-8 flex">
             <div className=" flex gap-7 h-full flex-1">
-            
                 <div className=" flex-1 h-full flex items-center pl-16 py-5 rounded-[2rem] shadow-main_blue/20 bg-main_white shadow-md">
                     <Breadcrumb>
                         <BreadcrumbList className=" text-3xl">

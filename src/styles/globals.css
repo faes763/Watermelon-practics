@@ -112,7 +112,7 @@ html {
 }
 
 body {
-  @apply bg-[url(/images/bg-main.png)] text-main_blue bg-cover;
+  @apply bg-[url(/images/bg-main.png)] text-main_blue;
 }
 
 .bg-button-main {
