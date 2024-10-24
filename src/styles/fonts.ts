@@ -1,7 +1,10 @@
 import localFont from 'next/font/local';
-import { Inter } from "next/font/google";
+import { Inter, Montserrat_Alternates } from "next/font/google";
 
-export const inter = Inter({ subsets: ["latin"] });
+export const montserrat_alt = Montserrat_Alternates({
+    subsets: ["latin"],
+    weight: ["100" , "200" , "300" , "400" , "500" , "600" , "700" , "800" , "900"],
+});
 
 // export const PPNeueMontreal = localFont({
 //     src: [

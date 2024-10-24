@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import "../styles/globals.css";
-import { inter } from "@/styles/fonts";
-import { Header } from "@/components/header";
-import { Footer } from "@/components/footer";
+import { montserrat_alt } from "@/styles/fonts";
+import { ProviderUser } from "@/common/providers/get-user";
+import { CreateTaskDialog } from "@/page/(auth)/tasks/modals/create-task";
 
 export const metadata: Metadata = {
   title: "Telegram App",
@@ -18,11 +18,12 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no"/>
+        <link href="https://cdn.syncfusion.com/ej2/27.1.48/fluent2.css" rel="stylesheet"/>
       </head>
-      <body className={inter.className}>
-        <Header />
+      <body className={montserrat_alt.className}>
         {children}
-        <Footer />
+        <ProviderUser/>
+        <CreateTaskDialog/>
       </body>
     </html>
   );
